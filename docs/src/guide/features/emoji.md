@@ -186,81 +186,21 @@ Waline.init({
 
   :::
 
-### 例子
+::: tip 使用 GitHub 仓库
 
-我们假设你有如下文件:
+我们更推荐你将图片上传到一个 GitHub 仓库，并为你的改动添加标签。这样你可以通过 GitHub CDN 链接来创建对应格式的预设。
 
-```
-https://example.com/myemoji/
-├─ my_laugh.png
-├─ my_cute.png
-├─ my_rage.png
-├─ my_sob.png
-└─ info.json
-```
-
-你的 info.json 可设置为:
-
-```json
-{
-  "name": "我的 Emoji",
-  "prefix": "my_",
-  "type": "png",
-  "icon": "cute",
-  "items": ["laugh", "sob", "rage", "cute"]
-}
-```
-
-这样你就可以在 `emoji` 选项中添加 `'https://example.com/myemoji'` 作为一个预设。(是否带 `/` 后缀随意)
-
-### 进阶
-
-我们更推荐你将图片上传到一个 GitHub 仓库，并为每次修改添加一个 tag。这样你可以使用 [cdn.jsdelivr.net](https://www.jsdelivr.com/) 上带有版本的 CDN 链接作为你的预设，其格式为 `https://cdn.jsdelivr.net/gh/user/repo@version/file`。绑定标签后，历史评论引用的图片链接将不会因为调整图片而失效。
-
-::: warning
-
-由于 cdn.jsdelivr.net 在国内受到污染，你可以将 `cdn.jsdelivr.net` 换成 `gcore.jsdelivr.net`
+比如，你可以利用 [cdn.jsdelivr.net](https://www.jsdelivr.com/) ，其格式为 `https://cdn.jsdelivr.net/gh/user/repo@version/file`。
 
 :::
 
-::: tip
+::: tip 使用使用配置对象
 
-官方预设就使用了 [walinejs/emojis](https://github.com/walinejs/emojis) 的 `v1.1.0` 版本。
-
-:::
-
-## 使用配置对象
-
-除了在图片文件夹下创建 `info.json` 来创建预设，你可以直接在 `emoji` 选项中直接添加配置对象。
+除了在图片文件夹下创建 `info.json` 来创建预设，我们也允许直接在 `emoji` 选项中直接添加配置对象。
 
 配置对象的格式和 `info.json` 只有一点不同: 你应当额外添加 `folder` 选项为图片文件夹 (不应包含尾随 `/`)，以便 Waline 可以找到你的表情包。
 
-### 例子
-
-假设你有下列文件结构:
-
-```
-https://example.com/myemoji/
-├─ my_laugh.png
-├─ my_cute.png
-├─ my_rage.png
-└─ my_sob.png
-```
-
-你可以直接添加
-
-```js
-{
-  name: "我的 Emoji",
-  folder: "https://example.com/myemoji",
-  prefix: "my_",
-  type: "png",
-  icon: "cute",
-  items: ["laugh", "sob", "rage", "cute"]
-}
-```
-
-至 `emoji` 选项作为一个配置项。
+:::
 
 ## 历史问题
 
