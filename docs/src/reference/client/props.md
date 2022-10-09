@@ -1,6 +1,7 @@
 ---
 title: 组件属性
 icon: config
+redirectFrom: /reference/component.html
 ---
 
 ## serverURL
@@ -52,7 +53,7 @@ Waline 的服务端地址。
 - 类型: `(string | WalineEmojiInfo)[] | false`
 - 默认值: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
 
-表情设置，详见 [自定义表情](../guide/client/emoji.md)
+表情设置，详见 [自定义表情](../../guide/features/emoji.md)
 
 ## dark
 
@@ -136,7 +137,7 @@ Waline 的服务端地址。
 
 ::: details 案例
 
-一个使用`lsky - pro`图床的案例。
+一个使用 `lsky - pro` 图床的案例。
 
 ```html
 <!DOCTYPE html>

@@ -1,6 +1,7 @@
 ---
 title: 客户端 API
 icon: config
+redirectFrom: /reference/client.html
 ---
 
 ## 客户端 API
@@ -17,7 +18,9 @@ Waline 提供三个 API:
 
 - `RecentComment`: 最近评论
 
-- `version: string`: Waline 客户端版本
+- `UserList`: 用户列表
+
+- `version`: Waline 客户端版本
 
 ## init
 
@@ -54,7 +57,7 @@ interface WalineInstance {
 }
 ```
 
-初始化选项接受所有 [Waline 组件](component.md) 支持的选项，此外，新增下列选项。
+初始化选项接受所有 [Waline 组件属性](props.md)，此外，新增下列选项。
 
 ### el
 
@@ -214,6 +217,92 @@ interface WalineRecentCommentsResult {
 
   /**
    * 取消挂载挂件
+   */
+  destroy: () => void;
+}
+```
+
+### UserList
+
+`RecentComments` 是一个展示用户互动排行榜或者评论墙的挂件。
+
+类型:
+
+```ts
+const RecentComments: (
+  options: WalineUserListOptions
+) => Promise<WalineUserListResult>;
+```
+
+选项:
+
+```ts
+interface WalineUserListOptions {
+  /**
+   * Waline 服务端地址
+   *
+   * Waline serverURL
+   */
+  serverURL: string;
+
+  /**
+   * 获取用户列表的数量
+   *
+   * fetch number of user list
+   */
+  count: number;
+
+  /**
+   * 需要挂载的元素
+   *
+   * Element to be mounted
+   */
+  el?: string | HTMLElement;
+
+  /**
+   * 错误提示消息所使用的语言
+   *
+   * Language of error message
+   *
+   * @default 'zh-CN'
+   */
+  lang?: string;
+
+  /**
+   * 自定义 waline 语言显示
+   *
+   * @see [自定义语言](https://waline.js.org/client/i18n.html)
+   *
+   * Custom display language in waline
+   *
+   * @see [I18n](https://waline.js.org/en/client/i18n.html)
+   */
+  locale?: WalineLocale;
+
+  /**
+   * 列表模式还是头像墙模式
+   *
+   * list mode or avatar wall mode
+   */
+  mode: 'list' | 'wall';
+}
+```
+
+返回值:
+
+```ts
+interface WalineUserListResult {
+  /**
+   * 用户数据
+   *
+   * User Data
+   */
+  users: WalineUser[];
+
+  /**
+   * 取消挂载挂件
+   *
+   * Umount widget
    */
   destroy: () => void;
 }

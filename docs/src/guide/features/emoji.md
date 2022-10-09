@@ -1,6 +1,7 @@
 ---
 title: 自定义表情
 icon: emoji
+redirectFrom: /guide/client/emoji.html
 ---
 
 你可以通过设置 `emoji` 选项自定义评论输入框的表情，你应该将它设置为包含*预设地址*或*预设配置对象*的**数组**。如果你不需要它，只需将它设置为 `false`。
@@ -139,17 +140,22 @@ Waline 不含有上述 Emoji 表情的任何版权，你需要自行承担使用
 
 ### 例子
 
-```js
-Waline.init({
-  el: '#waline',
-  serverURL: '<YOUR SERVER URL>',
+```html
+<div id="waline"></div>
+<script module>
+  import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
-  // 设置 emoji 为微博与哔哩哔哩
-  emoji: [
-    '//unpkg.com/@waline/emojis@1.1.0/weibo',
-    '//unpkg.com/@waline/emojis@1.1.0/bilibili',
-  ],
-});
+  init({
+    el: '#waline',
+    serverURL: '<YOUR SERVER URL>',
+
+    // 设置 emoji 为微博与哔哩哔哩
+    emoji: [
+      '//unpkg.com/@waline/emojis@1.1.0/weibo',
+      '//unpkg.com/@waline/emojis@1.1.0/bilibili',
+    ],
+  });
+</script>
 ```
 
 ## 创建自己的预设

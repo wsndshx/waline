@@ -1,25 +1,30 @@
 ---
 title: 评论数统计
 icon: counter
+redirectFrom: /guide/client/cmment.html
 ---
 
-Waline 支持在非评论区单独显示评论数。
+Waline 支持显示评论数。
 
 <!-- more -->
 
-## 自动更新
+## 在获取评论时自动更新页面
 
 你可以在 `init` 函数通过设置 `comment` 选项为 `true` 来开启评论数统计。
 
-```js
-Waline.init({
-  el: '#waline',
-  // ...
-  comment: true, // 评论数统计
-});
+```html
+<script module>
+  import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+  init({
+    el: '#waline',
+    // ...
+    comment: true, // 评论数统计
+  });
+</script>
 ```
 
-Waline 会自动查找页面中 `class` 值为 `waline-comment-count` 的元素，获取其 `data-path` 为查询条件，并将值填入其中。
+Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class` 值为 `waline-comment-count` 的元素，获取其 `data-path` 为查询条件，并将值填入其中。
 
 ```html
 <!-- data-path 将作为查询条件 -->
@@ -56,14 +61,18 @@ Waline 会自动查找页面中 `class` 值为 `waline-comment-count` 的元素�
 
 除了通过 `init` 函数自动更新之外，你可以通过 `commentCount` API 来手动更新当前页面的评论数:
 
-```js
-Waline.commentCount({
-  serverURL,
-  path,
+```html
+<script module>
+  import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
-  // 可选的，用于自定选择器，默认为 `'.waline-pageview-count'`
-  // selector: 'waline-pageview-count',
-});
+  commentCount({
+    serverURL,
+    path,
+
+    // 可选的，用于自定选择器，默认为 `'.waline-pageview-count'`
+    // selector: 'waline-pageview-count',
+  });
+</script>
 ```
 
 ::: info 中途取消
@@ -73,7 +82,7 @@ Waline.commentCount({
 `commentCount` 会返回一个函数，调用后即可取消此次更新:
 
 ```js
-const abort = Waline.commentCount({
+const abort = commentCount({
   serverURL: '<YOUR_SERVER_URL>',
   path: window.location.pathname,
 });
@@ -83,3 +92,21 @@ setTimeout(() => abort(), 500);
 ```
 
 :::
+
+## 单独导入
+
+有些时候，你可能希望在文章列表或者主页中展示一些页面的评论数，而不希望载入整个 Waline。此时你可以使用一个 Gzip 大小 < 1KB 的 `comment` 导出:
+
+```html
+<script module>
+  import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/comment.mjs';
+
+  commentCount({
+    serverURL,
+    path,
+
+    // 可选的，用于自定选择器，默认为 `'.waline-pageview-count'`
+    // selector: 'waline-pageview-count',
+  });
+</script>
+```
