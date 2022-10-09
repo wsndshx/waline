@@ -39,6 +39,8 @@ Waline V2 提供了一个 legacy 版本，对 Valine 的部分选项，以及 @w
 - `avatarCDN`
 - `mathTagSupport`
 
+## 例子
+
 ```html
 <!-- 使用与 Valine 和 Waline V1 客户端兼容的 Legacy 版本 -->
 <script src="https://unpkg.com/@waline/client@v2/dist/legacy.umd.js"></script>

@@ -3,15 +3,17 @@ title: 通过 CDN 导入 Waline
 icon: import
 ---
 
+本指南引导你如何使用 CDN 导入 Waline。
+
 <!-- more -->
 
-## 通过 CDN
+对于国内用户，我们推荐使用 [unpkg](https://unpkg.com/@waline/client)。对于国外用户，我们推荐使用 jsDelivr。
 
-推荐使用 [unpkg](https://unpkg.com/@waline/client)。
+为了让 Waline SSR 友好，我们在 V2 版本中拆分了 Waline 的样式。这意味着，你需要导入 Waline 的 CSS 样式文件，并导入 Waline 脚本文件并调用 Waline。
 
-::: code-tabs
+## 评论
 
-@tab 推荐版本
+通常情况下，你希望 Waline 渲染评论列表，你可以按照如下方式引入 Waline:
 
 ```html
 <!-- 样式文件 -->
@@ -29,12 +31,15 @@ icon: import
 </script>
 ```
 
-@tab 仅浏览量
+## 浏览量和评论数
+
+有些时候，你可能希望在主页或文章列表显示文章的浏览量和评论数，但是不需要加载评论组件，那么你可以通过下列方式引入一个 Gzip < 1KB 的脚本文件:
+
+浏览量:
 
 ```html
-<!-- 浏览量 -->
 <script module>
-  import { [pageviewCount] } from 'https://unpkg.com/@waline/client@v2/dist/pageview.mjs';
+  import { pageviewCount } from 'https://unpkg.com/@waline/client@v2/dist/pageview.mjs';
 
   pageviewCount({
     // options
@@ -42,123 +47,24 @@ icon: import
 </script>
 ```
 
+评论数:
+
+```html
+<script module>
+  import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/comment.mjs';
+
+  commentCount({
+    // options
+  });
+</script>
+```
+
 :::
+
+## 更多
 
 ::: info 指定版本
 
-对于 CDN 链接来说，不指定版本号时为最新版本，所以如果你需要指定特定版本，你需要在 `@waline/client` 后以 `@version` 的格式指定一个版本号。
-
-```html
-<!-- 你需要自行修改替换 `v2` 为你想要的版本号 -->
-<script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
-```
-
-:::
-
-## 通过 NPM
-
-### 安装
-
-Waline 客户端已通过 `@waline/client` 发布到 [npm](https://www.npmjs.com/package/@waline/client)，你可以通过以下命令安装:
-
-::: code-tabs#shell
-
-@tab pnpm
-
-```bash
-pnpm add -D @waline/client
-```
-
-@tab yarn
-
-```bash
-yarn add -D @waline/client
-```
-
-@tab npm
-
-```bash
-npm i -D @waline/client
-```
-
-:::
-
-### 引入
-
-Waline 提供多个版本的文件:
-
-- `dist/waline.js`: 完整版本，UMD 格式
-
-  此文件为 CDN 引入 `@waline/client` 的默认文件，53 KB Gzip 大小
-
-- `dist/shim.mjs`: 不含依赖捆绑的完整版本， ES Module 格式
-
-  此文件为 `import` 引入 `@waline/client` 的默认文件, 19.39 KB Gzip 大小
-
-- `dist/shim.cjs`: 不含依赖捆绑的完整版本，Common JS 格式
-
-  此文件为 `require` 引入 `@waline/client` 的默认文件，19.59 KB Gzip 大小
-
-- `dist/waline.css`: Waline CSS 样式
-
-- `dist/waline-meta.css`: Waline Meta 图标 CSS
-
-- `dist/component.mjs`: Waline 的 Vue 组件，ES Module 格式，不含依赖捆绑
-
-  此文件用于在 Vue 项目中以组件模式使用 Waline 评论, 18.28 KB Gzip 大小
-
-- `dist/comment.js`: Waline 的评论数模块，UMD 格式， < 1KB Gzip 大小
-
-  此文件用于 CDN 引入，用于仅需页面评论数的情况
-
-- `dist/pageview.js`: Waline 的浏览量模块，UMD 格式， < 1KB Gzip 大小
-
-  此文件用于 CDN 引入，用于仅需页面浏览量的情况
-
-其他格式文件:
-
-- `dist/waline.cjs`: `dist/waline.js` 文件的 Common JS 格式
-
-- `dist/waline.mjs`: `dist/waline.js` 文件的 ES Module 格式
-
-- `dist/comment.cjs`: `dist/comment.js` 文件的 Common JS 格式
-
-- `dist/comment.mjs`: `dist/comment.js` 文件的 ES Module 格式
-
-- `dist/pageview.cjs`: `dist/pageview.js` 文件的 Common JS 格式
-
-- `dist/pageview.mjs`: `dist/pageview.js` 文件的 ES Module 格式
-
-### 使用
-
-你可以通过多种形式导入需要的文件并使用，以下是一个示例。
-
-::: code-tabs#lang
-
-@tab JS
-
-```js
-import { init } from '@waline/client';
-
-import '@waline/client/dist/waline.css';
-
-init({
-  el: '#waline',
-  // ...
-});
-```
-
-@tab TS
-
-```ts
-import { init } from '@waline/client';
-
-import '@waline/client/dist/waline.css';
-
-init({
-  el: '#waline',
-  // ...
-});
-```
+你可能已经注意到，上述案例中，我们都在 `@aline/client` 后显式声明了 `@v2` 版本，这是推荐的，因为这能有效避免日后 Waline 客户端发布 V3 版本后，导致你的网站工作异常。
 
 :::
