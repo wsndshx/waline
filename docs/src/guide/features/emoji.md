@@ -142,7 +142,7 @@ Waline 不含有上述 Emoji 表情的任何版权，你需要自行承担使用
 
 ```html
 <div id="waline"></div>
-<script module>
+<script type="module">
   import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
   init({

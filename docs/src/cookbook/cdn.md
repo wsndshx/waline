@@ -22,7 +22,7 @@ icon: import
   href="https://unpkg.com/@waline/client@v2/dist/waline.css"
 />
 <!-- 脚本文件 -->
-<script module>
+<script type="module">
   import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
   init({
@@ -38,7 +38,7 @@ icon: import
 浏览量:
 
 ```html
-<script module>
+<script type="module">
   import { pageviewCount } from 'https://unpkg.com/@waline/client@v2/dist/pageview.mjs';
 
   pageviewCount({
@@ -50,7 +50,7 @@ icon: import
 评论数:
 
 ```html
-<script module>
+<script type="module">
   import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/comment.mjs';
 
   commentCount({

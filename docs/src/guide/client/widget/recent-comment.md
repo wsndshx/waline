@@ -24,7 +24,7 @@ Waline 通过 `RecentComments` 支持最新评论挂件显示，方便在博客�
 
 ```html
 <div id="waline-recent"></div>
-<script module>
+<script type="module">
   import { RecentComments } from 'https://cdn.jsdelivr.net/npm/waline/dist/waline.mjs';
 
   RecentComments({
@@ -49,7 +49,7 @@ Waline 通过 `RecentComments` 支持最新评论挂件显示，方便在博客�
 
 ```html
 <div id="waline-recent"></div>
-<script module>
+<script type="module">
   import { RecentComments } from 'https://cdn.jsdelivr.net/npm/waline/dist/waline.mjs';
 
   RecentComments({

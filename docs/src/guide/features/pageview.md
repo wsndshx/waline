@@ -20,7 +20,7 @@ Waline 支持浏览量统计。
 </div>
 <!-- 文章内容 -->
 <div id="waline"></div>
-<script module>
+<script type="module">
   import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
   init({
@@ -69,7 +69,7 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
     <span class="waline-pageview-count" data-path="/" />
   </li>
 </ul>
-<script module>
+<script type="module">
   import { pageviewCount } from 'https://unpkg.com/@waline/client/dist/pageview.mjs';
 
   pageviewCount({
@@ -96,7 +96,7 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
 `pageviewCount` 会返回一个函数，调用后即可取消此次更新:
 
 ```html
-<script module>
+<script type="module">
   import { pageviewCount } from 'https://unpkg.com/@waline/client/dist/pageview.mjs';
 
   const abort = pageviewCount({

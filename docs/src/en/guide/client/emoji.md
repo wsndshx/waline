@@ -141,7 +141,7 @@ Waline DO NOT have any copright of above emojis, use them at your own risk.
 
 ```html
 <div id="waline"></div>
-<script module>
+<script type="module">
   import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
   init({

@@ -99,7 +99,7 @@ Make the following settings on your web page:
      <!-- ... -->
      <div id="waline"></div>
      <script src="https://unpkg.com/@waline/client@v2/dist/waline.mjs"></script>
-     <script module>
+     <script type="module">
        import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
        init({

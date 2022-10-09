@@ -48,7 +48,7 @@ The current page has
 Besides automatically update via the `init` function, you can manually update the current page's comment count via the `commentCount` API:
 
 ```html
-<script module>
+<script type="module">
   import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/comment.mjs';
 
   commentCount({

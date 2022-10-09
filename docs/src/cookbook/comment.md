@@ -13,7 +13,7 @@ Waline 支持显示评论数。
 你可以在 `init` 函数通过设置 `comment` 选项为 `true` 来开启评论数统计。
 
 ```html
-<script module>
+<script type="module">
   import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
   init({
@@ -62,7 +62,7 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
 除了通过 `init` 函数自动更新之外，你可以通过 `commentCount` API 来手动更新当前页面的评论数:
 
 ```html
-<script module>
+<script type="module">
   import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
   commentCount({
@@ -98,7 +98,7 @@ setTimeout(() => abort(), 500);
 有些时候，你可能希望在文章列表或者主页中展示一些页面的评论数，而不希望载入整个 Waline。此时你可以使用一个 Gzip 大小 < 1KB 的 `comment` 导出:
 
 ```html
-<script module>
+<script type="module">
   import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/comment.mjs';
 
   commentCount({
