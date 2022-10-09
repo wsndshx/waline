@@ -17,7 +17,9 @@ As well as:
 
 - `RecentComment`: Waline recent comments widget
 
-- `version: string`: Waline client version
+- `UserList`: User List
+
+- `version`: Waline client version
 
 ## init
 
@@ -54,7 +56,7 @@ interface WalineInstance {
 }
 ```
 
-The initialization options accept all options supported by [Waline Component](component.md), in addition, the following options are added.
+The initialization options accept all [Waline Component Props](props.md), in addition, the following options are added.
 
 ### el
 
@@ -211,6 +213,74 @@ interface WalineRecentCommentsResult {
    * Comment Data
    */
   comments: WalineComment[];
+
+  /**
+   * Umount widget
+   */
+  destroy: () => void;
+}
+```
+
+### UserList
+
+`UserList` is a widget that displays user interaction leaderboards or comment walls.
+
+Type:
+
+```ts
+const RecentComments: (
+  options: WalineRecentCommentsOptions
+) => Promise<WalineRecentCommentsResult>;
+```
+
+Options:
+
+```ts
+interface WalineUserListOptions {
+  /**
+   * Waline serverURL
+   */
+  serverURL: string;
+
+  /**
+   * fetch number of user list
+   */
+  count: number;
+
+  /**
+   * Element to be mounted
+   */
+  el?: string | HTMLElement;
+
+  /**
+   * Language of error message
+   *
+   * @default 'zh-CN'
+   */
+  lang?: string;
+
+  /**
+   * Custom display language in waline
+   *
+   * @see [I18n](https://waline.js.org/en/client/i18n.html)
+   */
+  locale?: WalineLocale;
+
+  /**
+   * list mode or avatar wall mode
+   */
+  mode: 'list' | 'wall';
+}
+```
+
+Returns:
+
+```ts
+interface WalineUserListResult {
+  /**
+   * User Data
+   */
+  users: WalineUser[];
 
   /**
    * Umount widget
