@@ -47,14 +47,18 @@ The current page has
 
 Besides automatically update via the `init` function, you can manually update the current page's comment count via the `commentCount` API:
 
-```js
-Waline.commentCount({
-  serverURL,
-  path,
+```html
+<script type="module">
+  import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/comment.mjs';
 
-  // optional, for custom selectors, defaults to `'.waline-pageview-count'`
-  // selector: 'waline-pageview-count',
-});
+  commentCount({
+    serverURL,
+    path,
+
+    // optional, for custom selectors, defaults to `'.waline-pageview-count'`
+    // selector: 'waline-pageview-count',
+  });
+</script>
 ```
 
 ::: info Aborting

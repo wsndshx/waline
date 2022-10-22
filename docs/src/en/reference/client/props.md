@@ -45,14 +45,14 @@ Optional value:
 - `'ru'`
 - `'ru-RU'`
 
-If you need a custom language, please refer to [i18n](../guide/client/i18n.md).
+If you need a custom language, please refer to [i18n](../../guide/client/i18n.md).
 
 ## emoji
 
 - Type: `(string | WalineEmojiInfo)[] | false`
 - Default: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
 
-Emoji settings, for details see [Custom Emoji](../guide/client/emoji.md)
+Emoji settings, for details see [Custom Emoji](../../guide/client/emoji.md)
 
 ## dark
 
@@ -75,7 +75,7 @@ Darkmode support
 
 :::
 
-For details of custom style and darkmode, please see [Custom Style](../guide/client/style.md).
+For details of custom style and darkmode, please see [Custom Style](../../guide/client/style.md).
 
 ## meta
 

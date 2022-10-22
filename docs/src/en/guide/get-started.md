@@ -80,12 +80,9 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
 Make the following settings on your web page:
 
-1. Use CDN to import Waline:
+1. Import style file `https://unpkg.com/@waline/client@v2/dist/waline.css`
 
-   - `https://unpkg.com/@waline/client@v2/dist/waline.js`.
-   - `https://unpkg.com/@waline/client@v2/dist/waline.css`.
-
-1. Create a `<script>` tag and initialize with `Waline.init()` while passing in the necessary `el` and `serverURL` options.
+1. Create a `<script>` tag and initialize with `init()` from `https://unpkg.com/@waline/client@v2/dist/waline.mjs` while passing in the necessary `el` and `serverURL` options.
 
    - The `el` option is the element used for Waline rendering. You can set a CSS selector in the form of a string or an HTMLElement object.
    - `serverURL` is the link of the server, which you just got.
@@ -93,18 +90,19 @@ Make the following settings on your web page:
    ```html {3-7,12-18}:line-numbers
    <head>
      <!-- ... -->
-     <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
      <link
        rel="stylesheet"
        href="https://unpkg.com/@waline/client@v2/dist/waline.css"
      />
-     <!-- ... -->
    </head>
    <body>
      <!-- ... -->
      <div id="waline"></div>
-     <script>
-       Waline.init({
+     <script src="https://unpkg.com/@waline/client@v2/dist/waline.mjs"></script>
+     <script type="module">
+       import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+       init({
          el: '#waline',
          serverURL: 'https://your-domain.vercel.app',
        });

@@ -1,6 +1,7 @@
 ---
 title: 自定义表情
 icon: emoji
+redirectFrom: /guide/client/emoji.html
 ---
 
 你可以通过设置 `emoji` 选项自定义评论输入框的表情，你应该将它设置为包含*预设地址*或*预设配置对象*的**数组**。如果你不需要它，只需将它设置为 `false`。
@@ -139,17 +140,22 @@ Waline 不含有上述 Emoji 表情的任何版权，你需要自行承担使用
 
 ### 例子
 
-```js
-Waline.init({
-  el: '#waline',
-  serverURL: '<YOUR SERVER URL>',
+```html
+<div id="waline"></div>
+<script type="module">
+  import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
-  // 设置 emoji 为微博与哔哩哔哩
-  emoji: [
-    '//unpkg.com/@waline/emojis@1.1.0/weibo',
-    '//unpkg.com/@waline/emojis@1.1.0/bilibili',
-  ],
-});
+  init({
+    el: '#waline',
+    serverURL: '<YOUR SERVER URL>',
+
+    // 设置 emoji 为微博与哔哩哔哩
+    emoji: [
+      '//unpkg.com/@waline/emojis@1.1.0/weibo',
+      '//unpkg.com/@waline/emojis@1.1.0/bilibili',
+    ],
+  });
+</script>
 ```
 
 ## 创建自己的预设
@@ -186,124 +192,18 @@ Waline.init({
 
   :::
 
-### 例子
+::: tip 使用 GitHub 仓库
 
-我们假设你有如下文件:
+我们更推荐你将图片上传到一个 GitHub 仓库，并为你的改动添加标签。这样你可以通过 GitHub CDN 链接来创建对应格式的预设。
 
-```
-https://example.com/myemoji/
-├─ my_laugh.png
-├─ my_cute.png
-├─ my_rage.png
-├─ my_sob.png
-└─ info.json
-```
-
-你的 info.json 可设置为:
-
-```json
-{
-  "name": "我的 Emoji",
-  "prefix": "my_",
-  "type": "png",
-  "icon": "cute",
-  "items": ["laugh", "sob", "rage", "cute"]
-}
-```
-
-这样你就可以在 `emoji` 选项中添加 `'https://example.com/myemoji'` 作为一个预设。(是否带 `/` 后缀随意)
-
-### 进阶
-
-我们更推荐你将图片上传到一个 GitHub 仓库，并为每次修改添加一个 tag。这样你可以使用 [cdn.jsdelivr.net](https://www.jsdelivr.com/) 上带有版本的 CDN 链接作为你的预设，其格式为 `https://cdn.jsdelivr.net/gh/user/repo@version/file`。绑定标签后，历史评论引用的图片链接将不会因为调整图片而失效。
-
-::: warning
-
-由于 cdn.jsdelivr.net 在国内受到污染，你可以将 `cdn.jsdelivr.net` 换成 `gcore.jsdelivr.net`
+比如，你可以利用 [cdn.jsdelivr.net](https://www.jsdelivr.com/) ，其格式为 `https://cdn.jsdelivr.net/gh/user/repo@version/file`。
 
 :::
 
-::: tip
+::: tip 使用使用配置对象
 
-官方预设就使用了 [walinejs/emojis](https://github.com/walinejs/emojis) 的 `v1.1.0` 版本。
-
-:::
-
-## 使用配置对象
-
-除了在图片文件夹下创建 `info.json` 来创建预设，你可以直接在 `emoji` 选项中直接添加配置对象。
+除了在图片文件夹下创建 `info.json` 来创建预设，我们也允许直接在 `emoji` 选项中直接添加配置对象。
 
 配置对象的格式和 `info.json` 只有一点不同: 你应当额外添加 `folder` 选项为图片文件夹 (不应包含尾随 `/`)，以便 Waline 可以找到你的表情包。
 
-### 例子
-
-假设你有下列文件结构:
-
-```
-https://example.com/myemoji/
-├─ my_laugh.png
-├─ my_cute.png
-├─ my_rage.png
-└─ my_sob.png
-```
-
-你可以直接添加
-
-```js
-{
-  name: "我的 Emoji",
-  folder: "https://example.com/myemoji",
-  prefix: "my_",
-  type: "png",
-  icon: "cute",
-  items: ["laugh", "sob", "rage", "cute"]
-}
-```
-
-至 `emoji` 选项作为一个配置项。
-
-## 历史问题
-
-### Valine 兼容
-
-::: warning
-
-Waline 提供了一个 legacy 版本，对 Valine 的 emoji 选项进行了兼容。
-
-在 legacy 版本中，你可以使用 `emojiCDN` 设置 emoji 图片地址前缀，并使用 `emojiMaps` 设置表情 title 与图片的映射。
-
-此兼容在 V2 正式版中已经移除，请尽快迁移到 `emoji` 选项。
-
 :::
-
-```js
-Waline.init({
-  el: '#waline',
-  serverURL: '<YOUR SERVER URL>',
-
-  // 设置 CDN, 如微博表情 CDN
-  emojiCDN: 'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/',
-  // 表情 title 和图片映射
-  emojiMaps: {
-    smile: 'e3/2018new_weixioa02_org.png',
-    lovely: '09/2018new_keai_org.png',
-    // ... 更多表情
-  },
-});
-```
-
-### 样式问题
-
-在历史版本中，由于 HTML 标签会被转义，Emoji 图片完全使用 Markdown 的图片语法，这导致历史版本的 Emoji 是由存粹的 `<img>` 标签进行渲染的。如果你使用了高清表情包，可能会产生显示大小问题。在 `@waline/client@0.16.0` 以后，表情 emoji 的大小被成功修复。
-
-如果你需要对历史版本的 Emoji 表情大小进行适配，你可以使用 CSS 选择器做到这一点:
-
-```css
-/* 你需要把 `https://img.t.sinajs.cn` 换成自己的 CDN */
-.wl-content img[src^="https://img.t.sinajs.cn"]
-{
-  width: 1.25em;
-  margin: 0.25em;
-  vertical-align: middle;
-}
-```

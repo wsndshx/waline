@@ -139,17 +139,22 @@ Waline DO NOT have any copright of above emojis, use them at your own risk.
 
 ### Example
 
-```js
-Waline.init({
-  el: '#waline',
-  serverURL: '<YOUR SERVER URL>',
+```html
+<div id="waline"></div>
+<script type="module">
+  import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 
-  // Set emoji to Weibo and Bilibili
-  emoji: [
-    '//unpkg.com/@waline/emojis@1.1.0/weibo',
-    '//unpkg.com/@waline/emojis@1.1.0/bilibili',
-  ],
-});
+  init({
+    el: '#waline',
+    serverURL: '<YOUR SERVER URL>',
+
+    // Set emoji to Weibo and Bilibili
+    emoji: [
+      '//unpkg.com/@waline/emojis@1.1.0/weibo',
+      '//unpkg.com/@waline/emojis@1.1.0/bilibili',
+    ],
+  });
+</script>
 ```
 
 ## Creating own preset
