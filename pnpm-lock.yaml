@@ -88,7 +88,7 @@ importers:
       marked: 4.1.1
       vue: 3.2.41
       vuepress: 2.0.0-beta.53
-      vuepress-plugin-redirect: 2.0.0-beta.115
+      vuepress-plugin-redirect: 2.0.0-beta.116
       vuepress-shared: 2.0.0-beta.115
       vuepress-theme-hope: 2.0.0-beta.115
     devDependencies:
@@ -99,7 +99,7 @@ importers:
       marked: 4.1.1
       vue: 3.2.41
       vuepress: 2.0.0-beta.53_dkfen5jh5waidbcncwb2iemhwm
-      vuepress-plugin-redirect: 2.0.0-beta.115
+      vuepress-plugin-redirect: 2.0.0-beta.116
       vuepress-shared: 2.0.0-beta.115
       vuepress-theme-hope: 2.0.0-beta.115
 
@@ -14431,8 +14431,8 @@ packages:
       - supports-color
     dev: true
 
-  /vuepress-plugin-redirect/2.0.0-beta.115:
-    resolution: {integrity: sha512-xWArdNhG8oG8XlT4bO8YuVQKYTopxyHTvEf9giMoOVKwiXQMPth/SAkxvgG1ye8Gj0jLK3Bs1qbthz6YGXZr9g==}
+  /vuepress-plugin-redirect/2.0.0-beta.116:
+    resolution: {integrity: sha512-3k0A/7s9Xn7Ob4BssTMMMuIHlS6DNDZcK1W71bmXP0k+IsK8T2KULoAI430nyIoX6PzwGmTSdiD3vuwSiRsYKg==}
     hasBin: true
     dependencies:
       '@vuepress/cli': 2.0.0-beta.53
@@ -14440,7 +14440,7 @@ packages:
       '@vuepress/shared': 2.0.0-beta.53
       '@vuepress/utils': 2.0.0-beta.53
       cac: 6.7.14
-      vuepress-shared: 2.0.0-beta.115
+      vuepress-shared: 2.0.0-beta.116
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -14485,6 +14485,23 @@ packages:
 
   /vuepress-shared/2.0.0-beta.115:
     resolution: {integrity: sha512-7N5CiuHXynNxZ6qlZoqDWRQcqpEXA6poJgaQ+tdJERSB+6PMZn4nChif/LuuI8gCic2AS3C+LWJFLSsl8ZNlhw==}
+    dependencies:
+      '@vuepress/client': 2.0.0-beta.53
+      '@vuepress/plugin-git': 2.0.0-beta.53
+      '@vuepress/shared': 2.0.0-beta.53
+      '@vuepress/utils': 2.0.0-beta.53
+      dayjs: 1.11.6
+      execa: 6.1.0
+      fflate: 0.7.4
+      ora: 6.1.2
+      vue: 3.2.41
+      vue-router: 4.1.6_vue@3.2.41
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /vuepress-shared/2.0.0-beta.116:
+    resolution: {integrity: sha512-itTfmWQXPuDeatWUNgtSywSFXOV88Zde4JmYjfUgOBvl3dUQZw1D38PJcoh3hoBYpavSheBdcbXjdvt7HR+WAw==}
     dependencies:
       '@vuepress/client': 2.0.0-beta.53
       '@vuepress/plugin-git': 2.0.0-beta.53
